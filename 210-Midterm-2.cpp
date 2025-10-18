@@ -1,7 +1,11 @@
 //COMSC-210|Midterm-2|Ethan Aylard
 //IDE used: Visual Studio Code
+//I am going to simulate a coffee house line usding randomly generated names.
 
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -208,6 +212,15 @@ public:
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    srand((time(0)));
+    ifstream inFile;
+    //Store opens with five names:
+    DoublyLinkedList custNames;
+    inFile.open("names.txt");
+    if (!inFile){
+        cout << "Error opening file." << endl;
+        return 1;
+    }
 
     
     return 0;
