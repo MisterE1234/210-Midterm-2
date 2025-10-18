@@ -300,14 +300,15 @@ int main() {
     custOrder.print();
 
     //Every minute some event happens:
-    for (int min = 1; min < totalTime; min++){
+    for (int min = 1; min <= totalTime; min++){
     chance = getRandInt();
     cout << "Time since opened:" << min << endl;
     
     //Customer getting served: 40%
     if (chance < 40) {
-      cout <<  custOrder.get_position(1) << " is served.\n";
-
+        cout <<  custOrder.get_position(1) << " is served.\n";
+        custOrder.pop_front();
+        sizeVar--;
     }
 
     // Customer leaves from the back: 20%
@@ -315,6 +316,7 @@ int main() {
     if (chance < 20) {
     cout <<  custOrder.get_position(sizeVar) << " (at the rear) left the line.\n";
     custOrder.pop_back();
+    sizeVar--;
     }
     //Customer joins the end of line: 60%
     chance = getRandInt();
@@ -322,7 +324,7 @@ int main() {
         custOrder.push_back(names[getRandInt()]);
         sizeVar++;
         cout <<  custOrder.get_position(sizeVar) << " joins the line.\n";
-        sizeVar--;
+        
     }
 
     //Customer leaves line: 10%
@@ -330,6 +332,7 @@ int main() {
     if (chance < 10){
         rand_pos = randIntVar(sizeVar);
         cout << custOrder.get_position(rand_pos) << " Leaves the line.\n";
+        custOrder.delete_pos(rand_pos);
         sizeVar--;
     }
 
@@ -338,6 +341,7 @@ int main() {
     if (chance < 10){
         custOrder.push_front(names[getRandInt()]);
         cout << custOrder.get_position(1) << " (VIP) joins the front of the line.\n";
+        sizeVar++;
     }
 
 
@@ -358,8 +362,8 @@ int main() {
 //requires: nothing
 //returns: int
 int getRandInt(){
-int value = static_cast<int>(rand()) / RAND_MAX * 99; // [0, 99]
-return value;
+
+return rand() % 99;
 }
 
 //randIntVar(): Creats a random integer with a variable begining:
@@ -368,5 +372,5 @@ return value;
 int randIntVar(int max){
 
     
-    return rand() % max; //returns an int 0-max
+    return (rand() % max) + 1; //returns an int 0-max
 }
