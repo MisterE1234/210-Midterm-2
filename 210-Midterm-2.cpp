@@ -263,6 +263,8 @@ int main() {
     const int SIZE = 99;
     const int totalTime = 20;
     int chance;
+    int sizeVar;
+    int rand_pos;
     string nameTemp;
     ifstream inFile;
     DoublyLinkedList custOrder;
@@ -287,6 +289,7 @@ int main() {
     custOrder.push_back(names[getRandInt()]);
     custOrder.push_back(names[getRandInt()]);
     custOrder.push_back(names[getRandInt()]);
+    sizeVar = 5;
 
     cout << "Store opening: \n";
     custOrder.print();
@@ -296,8 +299,31 @@ int main() {
     chance = getRandInt();
     cout << "Time since opened:" << min << endl;
     
+    //Customer getting served: 40%
     if (chance > 40) {
-        custOrder.print_position(1);
+      cout <<  custOrder.get_position(1) << " is served.\n";
+
+    }
+
+    // Customer leaves from the back: 20%
+    chance = getRandInt();
+    if (chance > 20) {
+    cout <<  custOrder.get_position(sizeVar) << " (at the rear) left the line.\n";
+    custOrder.pop_back();
+    }
+    //Customer joins the end of line: 60%
+    chance = getRandInt();
+    if (chance > 60){
+        custOrder.push_back(names[getRandInt()]);
+        sizeVar++;
+        cout <<  custOrder.get_position(sizeVar) << " joins the line.\n";
+
+    }
+
+    //Customer leaves line: 10%
+    chance = getRandInt();
+    if (chance > 10){
+        
 
     }
 
