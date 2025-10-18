@@ -189,6 +189,8 @@ public:
             cout << "List is empty." << endl;
             return;
         }
+
+        cout << "Printing line: \n";
         while (current) {
             cout << current->data << " ";
             current = current->next;
@@ -202,6 +204,7 @@ public:
             cout << "List is empty." << endl;
             return;
         }
+        cout << "Printing line in reverse: \n";
         while (current) {
             cout << current->data << " ";
             current = current->prev;
@@ -209,16 +212,19 @@ public:
         cout << endl;
     }
 };
-
-int getRandomInt(){
-int value =  1.0 + static_cast<double>(rand()) / RAND_MAX * 99; // 1.0 + [0.0,4.0]
-
+// getRandIntCreating() a random integer value:
+//requires: nothing
+//returns: int
+int getRandInt(){
+int value = static_cast<int>(rand()) / RAND_MAX * 99; // 1.0 + [0.0,4.0]
+return value;
 }
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
     srand((time(0)));
     const int SIZE = 99;
+    const int totalTime = 20;
     string nameTemp;
     ifstream inFile;
     DoublyLinkedList custOrder;
@@ -238,8 +244,21 @@ int main() {
     }
 
     //Store opens with five names:
-    custOrder.push_back(names[rand()]);
+    custOrder.push_back(names[getRandInt()]);
+    custOrder.push_back(names[getRandInt()]);
+    custOrder.push_back(names[getRandInt()]);
+    custOrder.push_back(names[getRandInt()]);
+    custOrder.push_back(names[getRandInt()]);
 
-    
+    cout << "Store opening: \n";
+    custOrder.print();
+
+    //Every minute some event happens:
+    for (int min = 1; 1 < totalTime; min++){
+
+        
+    }
+
+
     return 0;
 }
