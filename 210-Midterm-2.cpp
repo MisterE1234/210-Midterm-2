@@ -211,6 +211,39 @@ public:
         }
         cout << endl;
     }
+
+    string get_position(int pos) {
+        string name;
+    if (!head) {
+            cout << "List is empty." << endl;
+            return;
+        }
+    
+        if (pos == 1) {
+            name = head->data;
+            return ;
+        }
+    
+        Node* temp = head;
+    
+        for (int i = 1; i < pos; i++){
+            if (!temp) {
+                cout << "Position doesn't exist." << endl;
+                return;
+            }
+            else
+                temp = temp->next;
+        }
+        if (!temp) {
+            cout << "Position doesn't exist." << endl;
+            return;
+        }
+    
+        name = temp->data;
+    
+        
+        return name;
+    }
 };
 // getRandInt():  creates a random integer value:
 //requires: nothing
@@ -261,10 +294,10 @@ int main() {
     //Every minute some event happens:
     for (int min = 1; 1 < totalTime; min++){
     chance = getRandInt();
-    cout << "time since opened:" << min << endl;
+    cout << "Time since opened:" << min << endl;
     
     if (chance > 40) {
-    
+        custOrder.print_position(1);
 
     }
 
@@ -279,8 +312,7 @@ int main() {
 //requires: nothing
 //returns: int
 int getRandInt(){
-int value = static_cast<int>(rand()) / RAND_MAX * 99; // 1.0 + [0.0,4.0]
-return value;
+int value = static_cast<int>(rand()) / RAND_MAX * 99; // [0, 99]
 }
 
 //randIntVar(): Creats a random integer with a variable begining:
@@ -288,6 +320,6 @@ return value;
 //returns: int
 int randIntVar(int max){
 
-    int value;
+    int value = static_cast<int>(rand()) / RAND_MAX * max; // [0, max];
     return value;
 }
