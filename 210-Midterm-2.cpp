@@ -283,6 +283,8 @@ int main() {
 
     }
 
+    inFile.close;
+
     //Store opens with five names:
     custOrder.push_back(names[getRandInt()]);
     custOrder.push_back(names[getRandInt()]);
@@ -300,35 +302,49 @@ int main() {
     cout << "Time since opened:" << min << endl;
     
     //Customer getting served: 40%
-    if (chance > 40) {
+    if (chance < 40) {
       cout <<  custOrder.get_position(1) << " is served.\n";
 
     }
 
     // Customer leaves from the back: 20%
     chance = getRandInt();
-    if (chance > 20) {
+    if (chance < 20) {
     cout <<  custOrder.get_position(sizeVar) << " (at the rear) left the line.\n";
     custOrder.pop_back();
     }
     //Customer joins the end of line: 60%
     chance = getRandInt();
-    if (chance > 60){
+    if (chance < 60){
         custOrder.push_back(names[getRandInt()]);
         sizeVar++;
         cout <<  custOrder.get_position(sizeVar) << " joins the line.\n";
-
+        sizeVar--;
     }
 
     //Customer leaves line: 10%
     chance = getRandInt();
-    if (chance > 10){
-        
-
+    if (chance < 10){
+        rand_pos = randIntVar(sizeVar);
+        cout << custOrder.get_position(rand_pos) << " Leaves the line.\n";
+        sizeVar--;
     }
 
+    //VIP arrives: 10%
+    chance = getRandInt();
+    if (chance < 10){
+        custOrder.push_front(names[getRandInt()]);
+        cout << custOrder.get_position(1) << " (VIP) joins the front of the line.\n";
     }
 
+
+    custOrder.print();
+    }
+
+
+
+    //Delete list:
+    custOrder.~DoublyLinkedList;
 
     return 0;
 }
