@@ -212,19 +212,24 @@ public:
         cout << endl;
     }
 };
-// getRandIntCreating() a random integer value:
+// getRandInt():  creates a random integer value:
 //requires: nothing
 //returns: int
-int getRandInt(){
-int value = static_cast<int>(rand()) / RAND_MAX * 99; // 1.0 + [0.0,4.0]
-return value;
-}
+int getRandInt();
+
+//randIntVar(): Creats a random integer with a variable begining:
+//requires : int
+//returns: int
+int randIntVar(int); 
+
+
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
     srand((time(0)));
     const int SIZE = 99;
     const int totalTime = 20;
+    int chance;
     string nameTemp;
     ifstream inFile;
     DoublyLinkedList custOrder;
@@ -255,10 +260,34 @@ int main() {
 
     //Every minute some event happens:
     for (int min = 1; 1 < totalTime; min++){
+    chance = getRandInt();
+    cout << "time since opened:" << min << endl;
+    
+    if (chance > 40) {
+    
 
-        
+    }
+
     }
 
 
     return 0;
+}
+
+
+// getRandInt():  creates a random integer value:
+//requires: nothing
+//returns: int
+int getRandInt(){
+int value = static_cast<int>(rand()) / RAND_MAX * 99; // 1.0 + [0.0,4.0]
+return value;
+}
+
+//randIntVar(): Creats a random integer with a variable begining:
+//requires : int
+//returns: int
+int randIntVar(int max){
+
+    int value;
+    return value;
 }
