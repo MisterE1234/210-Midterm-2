@@ -300,7 +300,7 @@ int main() {
     custOrder.print();
 
     //Every minute some event happens:
-    for (int min = 1; 1 < totalTime; min++){
+    for (int min = 1; min < totalTime; min++){
     chance = getRandInt();
     cout << "Time since opened:" << min << endl;
     
@@ -342,12 +342,13 @@ int main() {
 
 
     custOrder.print();
+    cout << endl;
     }
 
 
 
     //Delete list:
-    custOrder.~DoublyLinkedList;
+    custOrder.~DoublyLinkedList();
 
     return 0;
 }
@@ -366,6 +367,6 @@ return value;
 //returns: int
 int randIntVar(int max){
 
-    int value = static_cast<int>(rand()) / RAND_MAX * max; // [0, max];
-    return value;
+    
+    return rand() % max; //returns an int 0-max
 }
