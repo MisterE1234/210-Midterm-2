@@ -213,15 +213,16 @@ public:
     }
 
     string get_position(int pos) {
-        string name;
+    string name;
     if (!head) {
             cout << "List is empty." << endl;
-            return;
+            name = "Error";
+            return name;
         }
     
         if (pos == 1) {
             name = head->data;
-            return ;
+            return name;
         }
     
         Node* temp = head;
@@ -229,14 +230,16 @@ public:
         for (int i = 1; i < pos; i++){
             if (!temp) {
                 cout << "Position doesn't exist." << endl;
-                return;
+                name = "Error";
+                return name;
             }
             else
                 temp = temp->next;
         }
         if (!temp) {
             cout << "Position doesn't exist." << endl;
-            return;
+            name = "Error";
+            return name;
         }
     
         name = temp->data;
@@ -283,7 +286,7 @@ int main() {
 
     }
 
-    inFile.close;
+    inFile.close();
 
     //Store opens with five names:
     custOrder.push_back(names[getRandInt()]);
@@ -355,6 +358,7 @@ int main() {
 //returns: int
 int getRandInt(){
 int value = static_cast<int>(rand()) / RAND_MAX * 99; // [0, 99]
+return value;
 }
 
 //randIntVar(): Creats a random integer with a variable begining:
